@@ -21,28 +21,35 @@
             ["北京", 90],
             ["上海", 50],
             ["福州", 10],
-            ["广州", 50],
+            ["广州", 60],
             ["成都", 90],
             ["西安", 100]
         ]
-        const rankList = ["第一名", "第二名", "第三名", "第四名", "第五名", "第六名", "第七名", "第八名", "第九名", "第十名"]
+        const rankList = ["第一名", "第二名", "第三名", "第四名", "第五名", "第六名", "第七名", "第八名", "第九名", "第十名"];
 
-            (function () {
-                /*
-                遍历读取aqi-Data中各个城市的数据
-                将空气质量指数大于60的城市显示到aqi-list的列表中
-                */
-                const aqiDataArr = aqiData.filter(function (item) {
-                    return item > 60
+        (function() {
+            /*
+            遍历读取aqi-Data中各个城市的数据
+            将空气质量指数大于60的城市显示到aqi-list的列表中
+            */
+            const aqiDataArr = aqiData.filter(function (item, index, Array) {
+                return item[1] >= 60
+            })
+            console.log(aqiDataArr)
+            aqiDataArr.sort(function (a, b) {
+                return a - b
+            })
+            for(let i=0;i<aqiDataArr.length;i++){
+                aqiDataArr[i][1].sort(function(a,b){
+                    return b-a
                 })
-                aqiDataArr.sort(function (a, b) {
-                    return a - b
-                })
-                const aqiList = document.getElementById('aqi-list')
-                for(var i =0;i<aqiDataArr.length;i++){
-                    aqiList.innerHTML += `<li>${rankList[i]}, ${aqiDataArr[i]}</li>`
-                }
-            })()
+            }
+            console.log(aqiDataArr)
+            const aqiList = document.getElementById('aqi-list')
+            for (var i = 0; i < aqiDataArr.length; i++) {
+                aqiList.innerHTML += `<li>${rankList[i]}, ${aqiDataArr[i]}</li>`
+            }
+        })()
     </script>
 </body>
 
