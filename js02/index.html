@@ -35,19 +35,12 @@
             const aqiDataArr = aqiData.filter(function (item, index, Array) {
                 return item[1] >= 60
             })
-            console.log(aqiDataArr)
-            aqiDataArr.sort(function (a, b) {
-                return a - b
+            aqiDataArr.sort(function(a,b){
+                return b[1]-a[1]
             })
-            for(let i=0;i<aqiDataArr.length;i++){
-                aqiDataArr[i][1].sort(function(a,b){
-                    return b-a
-                })
-            }
-            console.log(aqiDataArr)
             const aqiList = document.getElementById('aqi-list')
             for (var i = 0; i < aqiDataArr.length; i++) {
-                aqiList.innerHTML += `<li>${rankList[i]}, ${aqiDataArr[i]}</li>`
+                aqiList.innerHTML += `<li>${rankList[i]}： ${aqiDataArr[i]}</li>`
             }
         })()
     </script>

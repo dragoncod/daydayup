@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>js04</title>
+    <style>
+        .number{
+            margin-top: 30px;
+        }
+        .number span {
+            padding: 10px;
+            background-color: #f00;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="text">
+        <button>左侧入</button>
+        <button>右侧入</button>
+        <button>左侧出</button>
+        <button>右侧出</button>
+    </div>
+    <div class="number">
+        <span>10</span>
+        <span>3</span>
+        <span>7</span>
+        <span>12</span>
+        <span>11</span>
+        <span>30</span>
+    </div>
+
+    <script>
+        const inp = document.querySelector("input")
+        const inpValue = inp.value
+        const data = []
+        const spanArr = document.querySelectorAll("span")
+        for(let i = 0;i<spanArr.length;i++){
+            data.push(spanArr[i].innerHTML)
+        }
+        const btn01 = document.querySelectorAll("button")[0]
+        btn01.addEventListener('click',function(){
+            
+        })
+    </script>
+</body>
+</html>

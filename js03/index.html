@@ -1,43 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>js03</title>
 </head>
+
 <body>
-   <ul id="source">
-       <li>北京空气质量：<b>90</b></li>
-       <li>上海空气质量：<b>70</b></li>
-       <li>天津空气质量：<b>80</b></li>
-       <li>广州空气质量：<b>50</b></li>
-       <li>深圳空气质量：<b>40</b></li>
-       <li>福州空气质量：<b>32</b></li>
-       <li>成都空气质量：<b>90</b></li>
-   </ul> 
-   <ul id="resort">
-       <!-- <li>第一名：北京空气质量：<b>90</b></li>
+    <ul id="source">
+        <li>北京空气质量：
+            <b>90</b>
+        </li>
+        <li>上海空气质量：
+            <b>70</b>
+        </li>
+        <li>天津空气质量：
+            <b>80</b>
+        </li>
+        <li>广州空气质量：
+            <b>50</b>
+        </li>
+        <li>深圳空气质量：
+            <b>40</b>
+        </li>
+        <li>福州空气质量：
+            <b>32</b>
+        </li>
+        <li>成都空气质量：
+            <b>90</b>
+        </li>
+    </ul>
+    <ul id="resort">
+        <!-- <li>第一名：北京空气质量：<b>90</b></li>
        <li>第一名：北京空气质量：<b>90</b></li> -->
-   </ul>
-   <button id="sort-btn">排序</button>
-   <script>
-       function getData(){
-
-       }
-       function sortAqiData(data){
-
-       }
-       function render(data){
-
-       }
-       function btnHandle(){
-
-       }
-       function init(){
-
-       }
-       init()
-   </script>
+    </ul>
+    <button id="sort-btn">排序</button>
+    <script>
+        const arr = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
+        function getData() {
+            const sourceList = document.getElementById('source').children
+            const data = []
+            for (let i = 0; i < sourceList.length; i++) {
+                const city = sourceList[i].innerHTML.split('空气质量：')[0]
+                const num = sourceList[i].children[0].innerHTML
+                data.push([city, num])
+            }
+            return data
+        }
+        function sortAqiData(data) {
+            return data.sort(function (a, b) {
+                return b[1] - a[1]
+            })
+        }
+        function render(data) {
+            const source = document.getElementById('source')
+            for (let i = 0; i < data.length; i++) {
+                source.innerHTML += `<li>第${arr[i]}名：${data[i][0]}空气质量：<b>${data[i][1]}</b></li>`
+            }
+        }
+        function btnHandle() {
+            const sortBtn = document.getElementById('sort-btn')
+            let aqiData = getData()
+            aqiData = sortAqiData(aqiData)
+            render(aqiData)
+            sortBtn.disabled = true
+        }
+        function init() {
+            const sortBtn = document.getElementById('sort-btn')
+            sortBtn.addEventListener('click', btnHandle, false)
+        }
+        init()
+    </script>
 </body>
+
 </html>
