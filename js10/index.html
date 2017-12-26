@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    div {
+        font-size: 14px;
+        font-family: "Arial", "Microsoft YaHei";
+        font-weight: bold;
+    }
+
+    span {
+        font-size: 30px;
+        background: none!important;
+    }
+
+    button {
+        background: #2D78BA;
+        border: 1px solid transparent;
+        outline: none;
+        color: white;
+        font-weight: bold;
+        border-radius: 10%;
+        font-size: 16px;
+        width: 55px;
+        height: 35px;
+        line-height: 30px;
+        margin-left: 5px;
+    }
+
+    input {
+        outline: none;
+        width: 400px;
+        height: 30px;
+    }
+
+    p {
+        padding-left: 65px;
+        color: #cccccc;
+    }
+</style>
+
+<body>
+    <dl>
+        <dt>校验规则：</dt>
+        <dd>1.字符数为4~16位</dd>
+        <dd>2.每个英文字母、数字、英文符号长度为1</dd>
+        <dd>3.每个汉字，中文符号长度为2</dd>
+    </dl>
+    <div>
+
+        <form action="#">
+            <span>名称</span>
+            <input id="oTxt" type="text" placeholder="请输入4-16位中文、英文、数字、中文符号或英文符号">
+            <button id="btn">验证</button>
+            <p id="pTxt" class="p1"></p>
+        </form>
+    </div>
+    <script>
+        var oBtn = document.getElementById("btn");
+        var oTxt = document.getElementById("oTxt");
+        var pTxt = document.getElementById("pTxt");
+        oBtn.onclick = function () {
+            var val = oTxt.value;
+            //          console.log(val);
+            //将所有中文及中文符号替换为英文符号，方便计算长度
+            //        先替换空格在替换中文
+            val = val.replace(/^\s+|\s$/g, "").replace(/[\u0391-\uFFE5]/g, "*");
+            if (val.length < 4 || val.length > 16) {
+                //              pTxt.innerHTML="必填，长度为4-16个字符";
+                //              pTxt.style.color="red";
+                prompt(pTxt, 1);
+                oTxt.style.border = "2px solid red";
+            } else {
+                //              pTxt.innerHTML="格式正确";
+                //              pTxt.style.color="green";
+                prompt(pTxt, 2);
+                oTxt.style.border = "2px solid green";
+            }
+        };
+        var prompt = function (obj, situation) {
+            if (situation == 1) {
+                obj.innerHTML = "必填，长度为4-16个字符";
+                obj.style.color = "red";
+            }
+            if (situation == 2) {
+                obj.innerHTML = "格式正确";
+                obj.style.color = "green";
+            }
+        };
+        oTxt.onfocus = function () {
+            pTxt.innerHTML = "";
+            oTxt.style.border = "1px solid gray";
+        };
+    </script>
+</body>
+
+</html>
